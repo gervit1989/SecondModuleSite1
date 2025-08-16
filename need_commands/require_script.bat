@@ -1,2 +1,2 @@
-pip install pipreqs
-pipreqs  . --ignore ".venv" --force
+rem pip install pipreqs
+pipreqs  . --ignore ".venv1" --force
