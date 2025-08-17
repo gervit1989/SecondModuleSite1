@@ -1,1 +1,1 @@
-pip freeze > requirements1.txt
+pip freeze > requirements.txt

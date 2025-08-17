@@ -2,16 +2,25 @@ import os
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif'}
 
+# Расширение файла
+def get_extension(img_name:str)->str:
+    ext = os.path.basename()
+
+    ext = img_name.rsplit('.', 1)[1].lower()
+    return ext
+
 # Проверить изображение
 def check_image(img_name:str):
     if is_allowed_file_format(img_name):
         if is_allowed_file_by_volume(img_name):
-            return True
-    return False
+            return True, ''
+        else:
+            return False, 'Image format is correct, but size is too large'
+    return False, 'Image is not correct.'
 
 # разрешенные по расширению
 def is_allowed_file_format(img_name:str):
-    ext = os.path.basename()
+    ext = get_extension()
 
     if ext in ALLOWED_EXTENSIONS:
         return True
@@ -32,6 +41,10 @@ def is_docker():
             return 'docker' in f.read() or 'kubepod' in f.read()
     except FileNotFoundError:
         return False
+
+# Получить уникальное имя
+def secure_filename(filename:str)->str:
+    return filename.replace('..', '').replace('/', '').replace('\\', '')
 
 #Получить пути
 def get_paths():
