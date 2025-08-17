@@ -37,7 +37,8 @@ if __name__ == '__main__':
         logging.basicConfig(
             filename=logs,
             level=logging.INFO,
-            format='[%(asctime)s] %(levelname)s: %(message)s'
+            format='[%(asctime)s] %(levelname)s: %(message)s',
+            mode='w'
         )
 
         # Идем на запуск
